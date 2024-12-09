@@ -9,4 +9,13 @@ const db = mysql.createPool({
   port: Number(config.get("dbPort")),
 });
 
+db.getConnection()
+  .then((connection) => {
+    console.log("Connected to the database");
+    connection.release();
+  })
+  .catch((err) => {
+    console.error("Database error", err);
+  });
+
 export default db;
