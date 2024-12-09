@@ -1,4 +1,4 @@
-import { Post } from "@/types/blog";
+import { Post } from "@/services/post.services";
 import { Button } from "@ui/button";
 import {
   Card,
@@ -15,13 +15,15 @@ function PostCard(post: Post) {
   return (
     <Card className="h-full flex flex-col">
       <CardHeader>
-        <CardDescription className="text-xs -mb-2">{post.create_at}</CardDescription>
-        <CardTitle className="text-lg">{post.title}</CardTitle>
+        <CardDescription className="text-xs -mb-2">
+          {new Date(post.createdAt).toDateString()}
+        </CardDescription>
+        <CardTitle className="text-lg line-clamp-1">{post.title}</CardTitle>
       </CardHeader>
-      <CardContent>{post.content}</CardContent>
+      <CardContent className="line-clamp-2">{post.content}</CardContent>
       <CardFooter className="mt-auto">
         <Button asChild variant={"link"}>
-          <Link to={`/post/${post.id}`}>
+          <Link to={`/blogs/${post.id}`}>
             Read more <ArrowRight className="inline" />
           </Link>
         </Button>
