@@ -1,4 +1,4 @@
-import ApiClient from "./appClient";
+import ApiClient from "./apiClient";
 
 interface AuthResponse {
   token: string;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface ApiResponse<T> {
   success: boolean;
   data: T;
@@ -6,7 +7,6 @@ interface ApiResponse<T> {
 
 // Centralized API request utility
 export default class ApiClient {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private static async request<T = any>(
     url: string,
     options: RequestInit
@@ -38,7 +38,7 @@ export default class ApiClient {
    */
   static async post<T>(
     url: string,
-    body: Record<string, unknown>,
+    body: Record<string, any>,
     headers: Record<string, string> = {
       "Content-Type": "application/json",
     }
@@ -68,7 +68,7 @@ export default class ApiClient {
    */
   static async put<T>(
     url: string,
-    body: Record<string, unknown>,
+    body: Record<string, any>,
     headers: Record<string, string> = {
       "Content-Type": "application/json",
     }
