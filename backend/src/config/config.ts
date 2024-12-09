@@ -6,6 +6,8 @@ const _config = {
   port: process.env.PORT,
   nodeEnv: process.env.NODE_ENV,
 
+  jwtSecret: process.env.JWT_SECRET,
+
   dbHost: process.env.DB_HOST,
   dbPort: process.env.DB_PORT,
   dbUser: process.env.DB_USER,
