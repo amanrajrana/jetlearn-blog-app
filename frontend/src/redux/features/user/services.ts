@@ -2,8 +2,6 @@ import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
 import { UserState } from "./userSlice";
 import ApiClient from "@/services/apiClient";
 import { getCookie } from "@/utils/cookie";
-import { CONFIG } from "@/config/config";
-
 
 export const getCurrentUser = createAsyncThunk<UserState["user"]>(
   "user/getCurrentUser",
@@ -17,7 +15,7 @@ export const getCurrentUser = createAsyncThunk<UserState["user"]>(
 
     headers.set("Authorization", `Bearer ${token}`);
     const res = await ApiClient.get<UserState["user"]>(
-      `${CONFIG.baseUrl}/api/v1/users/me`,
+      `/api/v1/users/me`,
       headers
     );
 

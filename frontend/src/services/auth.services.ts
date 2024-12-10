@@ -1,4 +1,3 @@
-import { CONFIG } from "@/config/config";
 import ApiClient from "./apiClient";
 
 interface AuthResponse {
@@ -6,7 +5,7 @@ interface AuthResponse {
 }
 
 class AuthService {
-  private baseUrl = `${CONFIG.baseUrl}/api/v1/auth`;
+  private baseUrl = `/api/v1/auth`;
 
   async login(username: string, password: string): Promise<AuthResponse> {
     const response = await ApiClient.post<AuthResponse>(

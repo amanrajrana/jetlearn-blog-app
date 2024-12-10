@@ -1,6 +1,5 @@
 import { getCookie } from "@/utils/cookie";
 import ApiClient from "./apiClient";
-import { CONFIG } from "@/config/config";
 import { Post } from "@/types/blog";
 
 export interface CreatePostDTO {
@@ -9,7 +8,7 @@ export interface CreatePostDTO {
 }
 
 class PostService {
-  private baseUrl = `${CONFIG.baseUrl}/api/v1/posts`;
+  private baseUrl = `/api/v1/posts`;
 
   // Fetch all posts
   async getPosts(): Promise<Post[]> {
