@@ -58,7 +58,8 @@ export const getPost = async (
       next(createHttpError(404, `Post not found! id: ${id}`));
       return;
     }
-    res.status(200).json(post);
+
+    res.status(200).send(post).end();
   } catch (error) {
     errorResponseHandler(error, next);
   }

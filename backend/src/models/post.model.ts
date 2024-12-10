@@ -56,7 +56,7 @@ class Post {
     if (!post) return null;
 
     return new Post(post.title, post.content, post.id, post.created_at, {
-      id: post.id,
+      id: post.userId,
       username: post.username,
     });
   }
