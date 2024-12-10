@@ -4,6 +4,7 @@ import { userSchema } from "../schema/user.schema";
 import createHttpError from "http-errors";
 import { generateToken } from "../utils/jwt";
 import { errorResponseHandler } from "../utils";
+import bcrypt from "bcrypt";
 
 export const register = async (
   req: Request,
@@ -22,8 +23,9 @@ export const register = async (
       return;
     }
 
-    // Step 3 - Create the user
-    const userId = await UserModel.create(user.username, user.password);
+    // Step 3 - Hash Password and save
+    const hashPassword = await bcrypt.hash(user.password, 10);
+    const userId = await UserModel.create(user.username, hashPassword);
 
     // Step 4 - generate session token
     const token = generateToken({ id: userId });
@@ -47,12 +49,17 @@ export const login = async (
     const existingUser = await UserModel.findByUsername(user.username);
 
     if (!existingUser) {
-      next(createHttpError(401, "Invalid credentials"));
+      next(createHttpError(401, "Account Not found"));
       return;
     }
 
-    // Step 3 - Check if the password is correct
-    if (user.password !== existingUser.password) {
+    // Step 3 - compare hashedPassword
+    const isMatched = await bcrypt.compare(
+      user.password,
+      existingUser.password
+    );
+
+    if (!isMatched) {
       next(createHttpError(401, "Invalid credentials"));
       return;
     }
