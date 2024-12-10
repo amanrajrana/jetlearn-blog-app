@@ -1,12 +1,14 @@
-import { useAppSelector } from "@/redux/hook";
 import { Button } from "@ui/button";
-import { BotMessageSquare, LogIn, LogOut } from "lucide-react";
+import { BotMessageSquare, LogIn } from "lucide-react";
 import { Link } from "react-router";
+import { LogOutAlert } from "./logout";
+import { useAppSelector } from "@/redux/hook";
 
 export default function Header() {
   const isLogin = useAppSelector(
     (state) => state.userState.authStatus === "authorized"
   );
+
   return (
     <header className="from-background/10 via-background/50 to-background/80 fixed top-0 z-50 flex h-16 w-full shrink-0 items-center justify-between border-b bg-gradient-to-b px-4 backdrop-blur-xl">
       <Link to={"/"} className="flex items-center">
@@ -26,7 +28,10 @@ export default function Header() {
             Blogs
           </Link>
           {isLogin && (
-            <Link to={"/blogs/new"} className="text-sm font-medium hover:underline">
+            <Link
+              to={"/blogs/new"}
+              className="text-sm font-medium hover:underline"
+            >
               create
             </Link>
           )}
@@ -35,10 +40,7 @@ export default function Header() {
       <div className="flex items-center justify-end space-x-2">
         <Button asChild>
           {isLogin ? (
-            <Link to={"/logout"}>
-              <LogOut size={14} />
-              Logout
-            </Link>
+            <LogOutAlert />
           ) : (
             <Link to={"/login"}>
               <LogIn size={14} />
