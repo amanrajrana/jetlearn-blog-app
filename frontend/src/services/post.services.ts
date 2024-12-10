@@ -1,4 +1,6 @@
+import { getCookie } from "@/utils/cookie";
 import ApiClient from "./apiClient";
+import { CONFIG } from "@/config/config";
 
 // Define Types
 export interface Post {
@@ -11,18 +13,12 @@ export interface Post {
 
 export interface CreatePostDTO {
   title: string;
-  body: string;
-  userId: number;
-}
-
-export interface UpdatePostDTO {
-  title?: string;
-  body?: string;
+  content: string;
 }
 
 // Service Implementation
 class PostService {
-  private baseUrl = "/api/v1/posts";
+  private baseUrl = `${CONFIG.baseUrl}/api/v1/posts`;
 
   // Fetch all posts
   async getPosts(): Promise<Post[]> {
@@ -38,12 +34,18 @@ class PostService {
 
   // Create a new post
   async createPost(data: CreatePostDTO): Promise<Post> {
-    const response = await ApiClient.post<Post>(`${this.baseUrl}`, data);
+    const token = getCookie("token");
+
+    const response = await ApiClient.post<Post>(`${this.baseUrl}`, data, {
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
+
     return response.data;
   }
 
   // Update an existing post
-  async updatePost(id: number, data: UpdatePostDTO): Promise<Post> {
+  async updatePost(id: number, data: Partial<CreatePostDTO>): Promise<Post> {
     const response = await ApiClient.put<Post>(`${this.baseUrl}/${id}`, data);
 
     return response.data;

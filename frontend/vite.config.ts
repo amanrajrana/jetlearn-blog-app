@@ -10,13 +10,13 @@ export default defineConfig({
       "@ui": path.resolve(__dirname, "./src/components/ui"),
     },
   },
-  server: {
-    proxy: {
-      "/api/v1": {
-        target: "http://localhost:5000",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/v1/, "/api/v1"),
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api/v1": {
+  //       target: "http://localhost:5000",
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api\/v1/, "/api/v1"),
+  //     },
+  //   },
+  // },
 });

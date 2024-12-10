@@ -53,7 +53,7 @@ export default class ApiClient {
   /**
    * Utility to make a Get request
    */
-  static async get<T>(url: string, headers: Headers): Promise<ApiResponse<T>> {
+  static async get<T>(url: string, headers?: Headers): Promise<ApiResponse<T>> {
     return this.request<T>(url, {
       method: "GET",
       headers,
