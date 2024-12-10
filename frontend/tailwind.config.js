@@ -58,6 +58,9 @@ export default {
         },
         padding: "1rem",
       },
+      screens: {
+        xs: "375px",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
