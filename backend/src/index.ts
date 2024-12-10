@@ -2,9 +2,11 @@ import express from "express";
 import config from "./config/config";
 import router from "./routers";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
