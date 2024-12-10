@@ -21,7 +21,7 @@ const BlogPage = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  }, [id]);
   return (
     <div className="mt-12 pt-12">
       {post ? (
