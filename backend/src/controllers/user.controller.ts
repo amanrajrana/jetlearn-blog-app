@@ -67,8 +67,6 @@ export const currentUser = async (
       username: user.username,
       createdAt: user.created_at,
     });
-
-    res.json(user);
   } catch (error) {
     errorResponseHandler(error, next);
   }
