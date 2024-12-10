@@ -19,7 +19,7 @@ export function LogOutAlert() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button>
+        <Button variant={"destructive"}>
           <LogOut />
           Logout
         </Button>

@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import postService, { Post } from "@/services/post.services";
+import postService from "@/services/post.services";
+import { Post } from "@/types/blog";
+import { Button } from "@ui/button";
+import { SquarePen } from "lucide-react";
+import { useAppSelector } from "@/redux/hook";
 
 const BlogPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState<Post | null>(null);
+
+  const user = useAppSelector((state) => state.userState.user);
 
   useEffect(() => {
     try {
@@ -31,10 +37,22 @@ const BlogPage = () => {
             {post.title}
           </h1>
 
-          {/* Author and Date */}
-          <div className="text-gray-600 mb-8">
-            <span className="font-medium">{post.userId}</span> ·{" "}
-            <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+          <div className="flex justify-between">
+            {/* Author and Date */}
+            <div className="text-gray-600 mb-8">
+              <p className="font-medium capitalize italic">
+                By: {post.user.username}
+              </p>
+              <p className="text-xs">
+                {new Date(post.createdAt).toLocaleDateString()}
+              </p>
+            </div>
+            {user && user.id === post.user.id && (
+              <Button>
+                <SquarePen />
+                Edit
+              </Button>
+            )}
           </div>
 
           {/* Content */}

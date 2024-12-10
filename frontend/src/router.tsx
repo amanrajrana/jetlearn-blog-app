@@ -8,6 +8,7 @@ import BlogPage from "./pages/blogs/id/blog-post";
 import BlogsPage from "./pages/blogs/blog-home-page";
 import Protected from "./components/auth-layout";
 import NewBlog from "./pages/blogs/new-blog";
+import Dashboard from "./pages/dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
           {
             path: "/blogs/new",
             element: <NewBlog />,
+          },
+          {
+            path: "/dashboard",
+            element: <Dashboard />,
           },
         ],
       },

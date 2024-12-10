@@ -14,6 +14,8 @@ import { AlertCircle, CircleCheck } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { setCookie } from "@/utils/cookie";
+import { useAppDispatch } from "@/redux/hook";
+import { getCurrentUser } from "@/redux/features/user/services";
 
 type Message = {
   type: "success" | "destructive";
@@ -22,6 +24,7 @@ type Message = {
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [message, setMessage] = useState<Message>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,6 +47,7 @@ export default function Login() {
     try {
       const res = await authService.login(username, password);
       setCookie("token", res.token);
+      await dispatch(getCurrentUser());
       navigate("/dashboard");
     } catch (error) {
       setMessage({

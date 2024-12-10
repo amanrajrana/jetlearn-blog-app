@@ -1,14 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { extraReducers } from "./services";
 import { deleteCookie } from "@/utils/cookie";
+import { User } from "@/types/blog";
 
 export interface UserState {
   authStatus: "idle" | "pending" | "authorized" | "unauthorized";
   message: string | null;
-  user: {
-    id: number;
-    username: string;
-  } | null;
+  user: User | null;
 }
 
 const initialState: UserState = {

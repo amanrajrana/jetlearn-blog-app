@@ -1,7 +1,14 @@
+export type User = {
+  id: number;
+  username: string;
+  password?: string;
+  createdAt?: string;
+};
+
 export type Post = {
   id: number;
   title: string;
   content: string;
-  create_at: string;
-  user_id: number;
+  createdAt: string;
+  user: User;
 };

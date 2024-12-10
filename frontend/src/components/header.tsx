@@ -1,7 +1,6 @@
 import { Button } from "@ui/button";
 import { BotMessageSquare, LogIn } from "lucide-react";
 import { Link } from "react-router";
-import { LogOutAlert } from "./logout";
 import { useAppSelector } from "@/redux/hook";
 
 export default function Header() {
@@ -27,20 +26,12 @@ export default function Header() {
           <Link to={"/blogs"} className="text-sm font-medium hover:underline">
             Blogs
           </Link>
-          {isLogin && (
-            <Link
-              to={"/blogs/new"}
-              className="text-sm font-medium hover:underline"
-            >
-              create
-            </Link>
-          )}
         </nav>
       </div>
       <div className="flex items-center justify-end space-x-2">
         <Button asChild>
           {isLogin ? (
-            <LogOutAlert />
+            <Link to={"/dashboard"}>Dashboard</Link>
           ) : (
             <Link to={"/login"}>
               <LogIn size={14} />

@@ -1,22 +1,13 @@
 import { getCookie } from "@/utils/cookie";
 import ApiClient from "./apiClient";
 import { CONFIG } from "@/config/config";
-
-// Define Types
-export interface Post {
-  id: number;
-  title: string;
-  content: string;
-  userId: number;
-  createdAt: string;
-}
+import { Post } from "@/types/blog";
 
 export interface CreatePostDTO {
   title: string;
   content: string;
 }
 
-// Service Implementation
 class PostService {
   private baseUrl = `${CONFIG.baseUrl}/api/v1/posts`;
 
