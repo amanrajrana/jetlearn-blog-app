@@ -94,7 +94,7 @@ export const updatePost = async (
     }
 
     // Step - 5: Check if the user is authorized to update the post
-    if (post.userId !== (req as AuthRequest).user.id) {
+    if (post.user?.id !== (req as AuthRequest).user.id) {
       return next(
         createHttpError(403, `You are not authorized to update this post!`)
       );
@@ -131,7 +131,7 @@ export const deletePost = async (
       return next(createHttpError(404, `Post not found! id: ${id}`));
     }
 
-    if (post.userId !== (req as AuthRequest).user.id) {
+    if (post.user?.id !== (req as AuthRequest).user.id) {
       return next(
         createHttpError(403, `You are not authorized to delete this post!`)
       );
