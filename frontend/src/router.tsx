@@ -5,10 +5,12 @@ import Login from "./pages/login";
 import NotFoundPage from "./pages/not-found";
 import Signup from "./pages/signup";
 import BlogPage from "./pages/blogs/id/blog-post";
-import BlogsPage from "./pages/blogs/blog-home-page";
+import BlogsPage from "./pages/blogs";
 import Protected from "./components/auth-layout";
-import NewBlog from "./pages/blogs/new-blog";
 import Dashboard from "./pages/dashboard";
+import NewBlog from "./pages/dashboard/new-blog";
+import EditPost from "./pages/dashboard/post-edit-page";
+import UserPostPage from "./pages/dashboard/post";
 
 export const router = createBrowserRouter([
   {
@@ -38,12 +40,20 @@ export const router = createBrowserRouter([
         element: <Protected authentication={true} />,
         children: [
           {
-            path: "/blogs/new",
+            path: "/dashboard",
+            element: <Dashboard />,
+          },
+          {
+            path: "/dashboard/posts",
+            element: <UserPostPage />,
+          },
+          {
+            path: "/dashboard/posts/new",
             element: <NewBlog />,
           },
           {
-            path: "/dashboard",
-            element: <Dashboard />,
+            path: "/dashboard/posts/:id",
+            element: <EditPost />,
           },
         ],
       },

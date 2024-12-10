@@ -2,16 +2,19 @@ import Footer from "./components/footer";
 import { Outlet } from "react-router";
 import Header from "./components/header";
 import { useEffect } from "react";
-import { useAppDispatch } from "./redux/hook";
+import { useAppDispatch, useAppSelector } from "./redux/hook";
 import { getCurrentUser } from "./redux/features/user/services";
 import { Toaster } from "@ui/toaster";
+import { getCookie } from "./utils/cookie";
 
 export default function Layout() {
   const dispatch = useAppDispatch();
+  const authStatus = useAppSelector((state) => state.userState.authStatus);
   useEffect(() => {
-    console.log("get current user dispatch run ");
-    dispatch(getCurrentUser());
-  }, [dispatch]);
+    if (authStatus === "idle") {
+      if (getCookie("token")) dispatch(getCurrentUser());
+    }
+  }, [dispatch, authStatus]);
 
   return (
     <>

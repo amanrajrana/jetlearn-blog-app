@@ -37,15 +37,25 @@ class PostService {
 
   // Update an existing post
   async updatePost(id: number, data: Partial<CreatePostDTO>): Promise<Post> {
-    const response = await ApiClient.put<Post>(`${this.baseUrl}/${id}`, data);
+    const token = getCookie("token");
+    const response = await ApiClient.put<Post>(`${this.baseUrl}/${id}`, data, {
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
 
     return response.data;
   }
 
   // Delete a post
   async deletePost(id: number): Promise<{ message: string }> {
+    const token = getCookie("token");
+
     const response = await ApiClient.delete<{ message: string }>(
-      `${this.baseUrl}/${id}`
+      `${this.baseUrl}/${id}`,
+      {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      }
     );
     return response.data;
   }

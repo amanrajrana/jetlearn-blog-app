@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import postService from "@/services/post.services";
 import { Post } from "@/types/blog";
 import { Button } from "@ui/button";
@@ -48,9 +48,11 @@ const BlogPage = () => {
               </p>
             </div>
             {user && user.id === post.user.id && (
-              <Button>
-                <SquarePen />
-                Edit
+              <Button asChild>
+                <Link to={`/dashboard/posts/${post.id}`}>
+                  <SquarePen />
+                  Edit
+                </Link>
               </Button>
             )}
           </div>

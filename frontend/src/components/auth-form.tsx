@@ -21,9 +21,9 @@ export default function AuthForm({
     <form>
       <div className="grid w-full items-center gap-4">
         <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="name">Username</Label>
+          <Label htmlFor="username">Username</Label>
           <Input
-            id="name"
+            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             type="email"
@@ -31,9 +31,9 @@ export default function AuthForm({
           />
         </div>
         <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="name">Password</Label>
+          <Label htmlFor="password">Password</Label>
           <Input
-            id="name"
+            id="password"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}

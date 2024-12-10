@@ -16,6 +16,7 @@ export default function Protected({ authentication = true }) {
     if (authStatus === "idle") {
       const token = getCookie("token");
       if (token) dispatch(getCurrentUser());
+      else if (authentication) navigate("/login");
       return;
     }
 
