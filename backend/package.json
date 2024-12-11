@@ -6,8 +6,6 @@
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js",
     "build": "tsc",
-    "start:serverless": "serverless offline start",
-    "deploy": "serverless deploy --stage production",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
@@ -15,7 +13,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "aws-sdk": "^2.1692.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -23,7 +20,6 @@
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.5",
-    "serverless-http": "^3.2.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -31,7 +27,6 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
-    "serverless-offline": "^14.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }
