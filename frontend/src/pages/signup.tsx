@@ -12,7 +12,7 @@ import {
 } from "@ui/card";
 import { AlertCircle, CircleCheck } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { setCookie } from "@/utils/cookie";
 
 type Message = {
@@ -21,6 +21,8 @@ type Message = {
 } | null;
 
 export default function Signup() {
+  const navigate = useNavigate();
+  
   const [message, setMessage] = useState<Message>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
@@ -43,6 +45,7 @@ export default function Signup() {
       const res = await authService.register(username, password);
       setCookie("token", res.token);
       setMessage({ type: "success", message: "Account created successfully!" });
+      navigate("/dashboard");
     } catch (error: unknown) {
       setMessage({ type: "destructive", message: (error as Error).message });
     } finally {
