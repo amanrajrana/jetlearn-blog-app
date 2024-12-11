@@ -60,26 +60,16 @@ cd jetlearn-blog-app/frontend
 npm install
 ```
 
-### 3. Configure API Base URL
+### 3. Set Env Variable
+copy `.env.example` to `.env` 
+  ```bash
+  cp .env.example .env
+  ```
 
-Edit the `vite.config.ts` file to set the API base URL:
-
-```ts
-export default defineConfig({
-  // ----
-  server: {
-    proxy: {
-      "/api/v1": {
-        target: "http://localhost:5000", // Backend URL
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/v1/, "/api/v1"),
-      },
-    },
-  },
-});
-```
-
----
+  *Set Env variable*
+  ```
+  VITE_API_BASE_URL=<backend host url>
+  ---
 
 ## Usage
 
